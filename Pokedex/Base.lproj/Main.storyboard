@@ -26,6 +26,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="gfQ-g5-qeR">
+                                <rect key="frame" x="0.0" y="109" width="414" height="627"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Wr-LA-zdw">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
                                 <subviews>
@@ -44,16 +47,13 @@
                                     <constraint firstAttribute="height" constant="65" id="ZdW-E6-WSr"/>
                                 </constraints>
                             </view>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="ibQ-Xu-V94">
+                            <searchBar contentMode="redraw" placeholder="Search Pokemon" translatesAutoresizingMaskIntoConstraints="NO" id="ibQ-Xu-V94">
                                 <rect key="frame" x="0.0" y="65" width="414" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="2pm-bh-O9b"/>
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="gfQ-g5-qeR">
-                                <rect key="frame" x="0.0" y="109" width="414" height="627"/>
-                            </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Mp8-h0-bnP">
                                 <rect key="frame" x="20" y="129" width="374" height="587"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -102,6 +102,7 @@
                                             <constraint firstAttribute="trailing" secondItem="H5S-j5-qGJ" secondAttribute="trailing" id="o1N-1S-Kez"/>
                                             <constraint firstAttribute="trailing" secondItem="fga-4Y-MZc" secondAttribute="trailing" id="wFm-xr-5hE"/>
                                         </constraints>
+                                        <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                         <connections>
                                             <outlet property="nameLabel" destination="fga-4Y-MZc" id="uiG-b3-e38"/>
                                             <outlet property="thumbImg" destination="H5S-j5-qGJ" id="TFW-xO-OM3"/>
@@ -112,29 +113,31 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="gfQ-g5-qeR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="6k2-Vy-djp"/>
                             <constraint firstItem="ibQ-Xu-V94" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Hel-H7-Kbo"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="gfQ-g5-qeR" secondAttribute="bottom" id="INA-f8-Kmt"/>
                             <constraint firstAttribute="trailing" secondItem="ibQ-Xu-V94" secondAttribute="trailing" id="ISX-Sl-jJA"/>
                             <constraint firstItem="ibQ-Xu-V94" firstAttribute="top" secondItem="9Wr-LA-zdw" secondAttribute="bottom" id="Kz2-vh-S04"/>
-                            <constraint firstItem="gfQ-g5-qeR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="PHH-7R-9iO"/>
-                            <constraint firstItem="gfQ-g5-qeR" firstAttribute="top" secondItem="ibQ-Xu-V94" secondAttribute="bottom" id="S6e-fm-vhQ"/>
+                            <constraint firstItem="gfQ-g5-qeR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Pey-Gh-1YN"/>
                             <constraint firstItem="9Wr-LA-zdw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="TzW-eE-pyl"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="gfQ-g5-qeR" secondAttribute="bottom" id="Yze-CT-xzG"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Mp8-h0-bnP" secondAttribute="bottom" constant="20" id="g0b-2B-ITw"/>
                             <constraint firstItem="Mp8-h0-bnP" firstAttribute="top" secondItem="ibQ-Xu-V94" secondAttribute="bottom" constant="20" id="j5e-bS-MbI"/>
+                            <constraint firstItem="gfQ-g5-qeR" firstAttribute="top" secondItem="ibQ-Xu-V94" secondAttribute="bottom" id="lXX-fc-VAj"/>
                             <constraint firstAttribute="trailing" secondItem="9Wr-LA-zdw" secondAttribute="trailing" id="p9y-kD-VUP"/>
-                            <constraint firstAttribute="trailing" secondItem="gfQ-g5-qeR" secondAttribute="trailing" id="pNz-bx-x90"/>
                             <constraint firstItem="Mp8-h0-bnP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="tBP-OG-7Sc"/>
                             <constraint firstItem="9Wr-LA-zdw" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="yJ6-gA-ROD"/>
                             <constraint firstAttribute="trailing" secondItem="Mp8-h0-bnP" secondAttribute="trailing" constant="20" id="zB3-UP-eZ8"/>
+                            <constraint firstAttribute="trailing" secondItem="gfQ-g5-qeR" secondAttribute="trailing" id="zjo-j6-lSL"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collection" destination="Mp8-h0-bnP" id="oDC-N3-O06"/>
+                        <outlet property="searchBar" destination="ibQ-Xu-V94" id="djj-cp-yUB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+            <point key="canvasLocation" x="354" y="138"/>
         </scene>
     </scenes>
     <resources>
