@@ -20,6 +20,9 @@ class Pokemon {
     private var _weight: String!
     private var _attack:String!
     private var _nextEvolutionTxt: String!
+    private var _nextEvolutionName: String!
+    private var _nextEvolutionId: String!
+    private var _nextEvolutionLvl: String!
     private var _pokemonURL:String!
     
     //With this we never return nils, just empty strings. This avoids crashes.
@@ -73,6 +76,27 @@ class Pokemon {
         return _nextEvolutionTxt
     }
     
+    var nextEvolutionName: String{
+        if _nextEvolutionName == nil{
+            _nextEvolutionName = ""
+        }
+        return _nextEvolutionName
+    }
+    
+    var nextEvolutionId: String{
+        if _nextEvolutionId == nil{
+            _nextEvolutionId = ""
+        }
+        return _nextEvolutionId
+    }
+    
+    var nextEvolutionLvl: String{
+        if _nextEvolutionLvl == nil{
+            _nextEvolutionLvl = ""
+        }
+        return _nextEvolutionLvl
+    }
+    
     var name:String {
         return _name
     }
@@ -120,15 +144,50 @@ class Pokemon {
                     self._type = "N/A"
                 }
                 
-                /*
-                if let descriptions = dict["descriptions"] as? [Dictionary<String, String>] , descriptions.count > 0{
-                    for x in 0..<descriptions.count{
-                        if let url = descriptions[x]["resource_uri"]{
-                            //print(url)
-                            self.downloadPokemonDescription(URL: url)
+                
+                if let descArray = dict["descriptions"] as? [Dictionary<String, String>] , descArray.count > 0{
+                    if let url = descArray[0]["resource_uri"] {
+                        Alamofire.request("\(URL_BASE)\(url)").responseJSON(completionHandler: { (response) in
+                            if let descDict = response.result.value as? Dictionary<String, AnyObject> {
+                                if let description = descDict["description"] as? String{
+                                    let newDescription = description.replacingOccurrences(of: "POKMON", with: "Pokemon")
+                                    self._description = newDescription
+                                }
+                            }
+                            completed()
+                        })
+                        
+                    }
+                }else{
+                    self._description = ""
+                }
+                
+                if let evolutions = dict["evolutions"] as? [Dictionary<String, AnyObject>] , evolutions.count > 0{
+                    if let nextEvo = evolutions[0]["to"] as? String{
+                        
+                        if nextEvo.range(of: "mega") == nil {
+                            self._nextEvolutionName = nextEvo
+                            
+                            if let url = evolutions[0]["resource_uri"] as? String{
+                                let newStr = url.replacingOccurrences(of: "/api/v1/pokemon/", with: "")
+                                let nextEvoId = newStr.replacingOccurrences(of: "/", with: "")
+                                
+                                self._nextEvolutionId = nextEvoId
+                                
+                                if let evoExists = evolutions[0]["level"] {
+                                    
+                                    if let lvl = evoExists as? Int {
+                                        self._nextEvolutionLvl = "\(lvl)"
+                                    }
+                                }else{
+                                    self._nextEvolutionLvl = ""
+                                }
+                            }
+                        }else{
+                            self._nextEvolutionLvl = ""
                         }
                     }
-                }*/
+                }
                 
             }
             //We complete the request so the closure takes action where it was called
@@ -137,22 +196,6 @@ class Pokemon {
         }
         
     }
-    
-    /*
-    
-    func downloadPokemonDescription(URL:String){
-        
-        let descriptionURL = "\(URL_BASE)\(URL)"
-        
-        Alamofire.request(descriptionURL).responseJSON { (response) in
-            if let dict = response.result.value as? Dictionary<String, AnyObject> , dict.count > 0{
-                if let description = dict["description"] as? String {
-                    self._description? += " / \(description.capitalized)"
-                }
-            }
-            //completed()
-        }
-    }*/
     
 }
 

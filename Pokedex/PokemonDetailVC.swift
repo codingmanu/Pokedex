@@ -29,15 +29,14 @@ class PokemonDetailVC: UIViewController {
         super.viewDidLoad()
         
         nameLabel.text = pokemon.name
-        
-        let img = UIImage(named: "\(pokemon.pokedexId)")
-        mainImage.image = img
-        currentEvoImage.image = img
-        
+
         pokemon.downloadPokemonDetails {
             self.updateUI()
         }
         
+        let img = UIImage(named: "\(pokemon.pokedexId)")
+        mainImage.image = img
+        currentEvoImage.image = img
     }
     
     @IBAction func backButtonTapped(_ sender: Any) {
@@ -51,6 +50,21 @@ class PokemonDetailVC: UIViewController {
         weightLabel.text = pokemon.weight
         pokedexIdLabel.text = String(pokemon.pokedexId)
         typeLabel.text = pokemon.type
+        descriptionLabel.text = pokemon.description
         
+        
+        if pokemon.nextEvolutionId == ""{
+            evoLabel.text = "No evolutions"
+            
+        }else{
+            evoLabel.text = "Next evolution: \(pokemon.nextEvolutionName) LVL \(pokemon.nextEvolutionLvl)"
+            let evoImg = UIImage(named: "\(pokemon.nextEvolutionId)")
+            nextEvoImage.image = evoImg
+        }
+        
+        
+        
+        
+
     }
 }
