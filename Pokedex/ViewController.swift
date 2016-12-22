@@ -130,11 +130,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             if let detailsVC = segue.destination as? PokemonDetailVC{
                 if let poke = sender as? Pokemon{
                     detailsVC.pokemon = poke
+                    poke.downloadPokemonDetails {
+                        detailsVC.updateUI()
+                        if poke.nextEvolutionId.characters.count > 0{
+                            detailsVC.pokemonEvo = self.pokemon[Int(poke.nextEvolutionId)!-1]
+                            detailsVC.pokemon2Evo = self.pokemon[Int(poke.nextEvolutionId)!]
+                        }
+                    }
                 }
             }
         }
     }
-    
-    
 }
 

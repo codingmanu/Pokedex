@@ -17,7 +17,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" id="BYZ-38-t0r" customClass="ViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -172,6 +172,7 @@
                                         <state key="normal" image="back"/>
                                         <connections>
                                             <action selector="backButtonTapped:" destination="qWt-Rc-fyM" eventType="touchUpInside" id="Nzh-oa-SLe"/>
+                                            <segue destination="BYZ-38-t0r" kind="show" identifier="backToMain" id="Aul-L2-FTM"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -373,13 +374,18 @@
                                                     <constraint firstAttribute="height" constant="100" id="Q8r-Cb-QrH"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rEC-kW-z6W">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5BB-bF-0vd">
                                                 <rect key="frame" x="110" y="0.0" width="100" height="100"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="100" id="Cp3-ST-5KO"/>
-                                                    <constraint firstAttribute="height" constant="100" id="ToZ-T4-nMN"/>
+                                                    <constraint firstAttribute="width" constant="100" id="Tpo-sp-U2r"/>
+                                                    <constraint firstAttribute="height" constant="100" id="j98-9k-ilD"/>
                                                 </constraints>
-                                            </imageView>
+                                                <connections>
+                                                    <action selector="nextEvoButton" destination="qWt-Rc-fyM" eventType="touchUpInside" id="TQp-Ie-7XY"/>
+                                                    <action selector="nextEvoButtonTapped" destination="qWt-Rc-fyM" eventType="touchUpInside" id="Gj4-Iy-YGv"/>
+                                                    <segue destination="qWt-Rc-fyM" kind="show" identifier="PokemonDetailVC" id="mDm-tC-94s"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -412,7 +418,7 @@
                         <outlet property="heightLabel" destination="N7q-ej-S1Q" id="nm7-SM-bkp"/>
                         <outlet property="mainImage" destination="oAz-XE-q9q" id="rxd-ut-FeS"/>
                         <outlet property="nameLabel" destination="Jag-xq-hSU" id="CGy-bG-Dmv"/>
-                        <outlet property="nextEvoImage" destination="rEC-kW-z6W" id="us2-Kg-4da"/>
+                        <outlet property="nextEvoButton" destination="5BB-bF-0vd" id="KSx-sg-MlH"/>
                         <outlet property="pokedexIdLabel" destination="DSb-Ym-cgK" id="A5P-QG-UKF"/>
                         <outlet property="typeLabel" destination="Xav-E4-0UG" id="K6W-kF-BSc"/>
                         <outlet property="weightLabel" destination="pQH-5T-6Jm" id="Lhs-5d-ogd"/>
@@ -428,4 +434,7 @@
         <image name="back" width="100" height="67"/>
         <image name="bg" width="1920" height="1200"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="XwQ-zT-l5N"/>
+    </inferredMetricsTieBreakers>
 </document>
